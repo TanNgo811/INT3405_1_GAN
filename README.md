@@ -21,30 +21,30 @@ Trong quá trình huấn luyện ta kết hợp xen kẽ giữa Generator và Di
 
 **Huấn luyện cho Discriminator*
 
-1. Lấy mẫu một mini-batch có kích thước m là các nhiễu $\{z_1, \dots, z_m\} \in p_g(z)$ và là đầu vào của mạng Generator. 
+1. Lấy mẫu một mini-batch có kích thước m là các nhiễu ![GAN Structure](./images/eqn1.png) và là đầu vào của mạng Generator. 
     
-    Đồng thời lấy một mini-batch khác có kích thước m là các điểm dữ liệu thật $\{x_1, \dots, x_m\} \in p_{data}(x)$.
+    Đồng thời lấy một mini-batch khác có kích thước m là các điểm dữ liệu thật ![GAN Structure](./images/eqn2.png).
     
 2. Cập nhật tham số mạng Discriminator bằng cách Lên đồi bằng đạo hàm theo công thức:
     
-    $$\nabla_{\theta_{d}}\frac1m\sum_{i=1}^m[logD(x_i)+log(1-D(G(z_i)))]$$
+    ![GAN Structure](./images/eqn3.png)
     
 3. Lặp lại từ **bước 1** cho đến hết $k$ bước ở mạng Discriminator.
 
-*Do là huấn luyện trên mạng Discriminator nên chỉ được cập nhật các hệ số trên mạng Discriminator là $\theta_{d}$. Các hệ số của mạng Generator được giữ nguyên.*
+*Do là huấn luyện trên mạng Discriminator nên chỉ được cập nhật các hệ số trên mạng Discriminator là ![GAN Structure](./images/eqn5.png). Các hệ số của mạng Generator được giữ nguyên.*
 
 *Huấn luyện cho mạng Generator
 
 Sau khi kết thúc k batch huấn luyện cho mạng Discriminator, ta tiếp tục huấn luyện trên Generator
 
-4. Lấy một mini-batch kích thước m lựa chọn từ các nhiễu  $\{z_1, \dots, z_m\} \in p_g(z)$.
+4. Lấy một mini-batch kích thước m lựa chọn từ các nhiễu  ![GAN Structure](./images/eqn1.png).
 5. Cập nhật tham số của mạng Generator bằng cách Xuống đồi bằng đạo hàm theo công thức:
     
-    $$\nabla_{\theta_{g}}\frac1m\sum_{i=1}^mlog(1-D(G(z_i)))$$
+    ![GAN Structure](./images/eqn4.png)
     
 6. Lặp lại từ **bước 1** cho đến hết số lượt Training
 
-Quá trình cập nhật bằng Xuống đồi bằng đạo hàm chỉ được áp dụng trên các hệ số của Generator là $\theta_{g}$. Tiếp tục quá trình này cho tới khi tổng số lượt huấn luyện là đủ lớn hoặc loss của mô hình tiệm cận về 0.
+*Quá trình cập nhật bằng Xuống đồi bằng đạo hàm chỉ được áp dụng trên các hệ số của Generator là ![GAN Structure](./images/eqn6.png). Tiếp tục quá trình này cho tới khi tổng số lượt huấn luyện là đủ lớn hoặc loss của mô hình tiệm cận về 0.*
 
 
 ## Quá trình huấn luyện
